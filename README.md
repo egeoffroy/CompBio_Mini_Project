@@ -1,8 +1,18 @@
 # Computional Biology Mini Project
 
 ## Installation
+To run this program from your own working directory, clone this repository to your workspace. 
+
 ```
-  git clone 
+  git clone https://github.com/egeoffroy/CompBio_Mini_Project.git
+```
+
+## Directions
+To run this program, 
+
+```
+  cd CompBio_Mini_Project
+  bash run_all.sh
 ```
 
 ### 15pts
