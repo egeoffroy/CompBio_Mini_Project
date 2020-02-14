@@ -1,5 +1,9 @@
 # Computional Biology Mini Project
 
+## Installation
+```
+  git clone 
+```
 
 ### 15pts
 ### Due via Sakai by 11:59PM 2/27
