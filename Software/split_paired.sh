@@ -1,4 +1,5 @@
 #!/bin/bash
+cd ncbi_files
 declare -a SRRs
 SRRs=(SRR5660030 SRR5660033 SRR5660044 SRR5660045)
 for i in "${SRRs[@]}":
