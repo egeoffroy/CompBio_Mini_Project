@@ -11,8 +11,13 @@ To run this program from your own working directory, clone this repository to yo
 To run this program, 
 
 ```
-  cd CompBio_Mini_Project
-  bash run_all.sh
+  cd CompBio_Mini_Project/Software
+  bash run_all.sh SRR1 SRR2 SRR3 SRR4
+```
+
+For the data from the homework assignment:
+```
+  bash run_all.sh SRR5660030 SRR5660033 SRR5660044 SRR5660045
 ```
 
 ### 15pts
