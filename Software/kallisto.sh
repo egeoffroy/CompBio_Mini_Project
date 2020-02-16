@@ -9,5 +9,5 @@ declare -a SRR
 SRR=($1 $2 $3 $4)
 for i in "${SRR[@]}";
 do
-        time kallisto quant -i index.idx -o ./"${i}" -b 30 -t 4 "${i}"_1.fastq.gz "${i}"_2.fastq.gz
+        time kallisto quant -i index.idx -o ./"${i}" -b 30 -t 4 ./"${i}"_1.fastq.gz ./"${i}"_2.fastq.gz
 done
