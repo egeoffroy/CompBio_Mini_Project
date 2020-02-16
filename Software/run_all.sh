@@ -5,7 +5,7 @@ SRRs=($1 $2 $3 $4)
 echo $SRRs
 cd ..
 log=miniProject.log
-#curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id=EF999921&rettype=gb&retmode=txt">E$#bash ./Software/download_files.sh #deprecated line
+curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id=EF999921&rettype=gb&retmode=txt">E$#bash ./Software/download_files.sh #deprecated line
 var=$(python ./Software/Transcriptome_index.py 2>&1)
 echo 'The HCMV genome (EF999921) has ' $var >> $log
 #bash ./Software/split_paired.sh
