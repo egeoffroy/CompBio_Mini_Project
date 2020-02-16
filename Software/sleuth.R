@@ -6,8 +6,13 @@ stab <- read.table("sample_covariates.txt", header=TRUE, stringsAsFactors=FALSE)
 colnames(stab) <- c("path", "sample")
 so <- sleuth_prep(stab)
 so
+#fit a model comparing the two conditions
+so <- sleuth_fit(so, ~condition, 'full')
+#fit the reduced model to compare in the likelihood ratio test
+so <- sleuth_fit(so, ~1, 'reduced')
+#perform the likelihood ratio test for differential expression between conditions
+so<- sleuth_lrt(so, 'reduced', 'full')
 
-so <- sleuth_lrt(so, 'reduced', 'full')
 
 
 #extract the test results from the sleuth object
