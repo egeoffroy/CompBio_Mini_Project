@@ -1,6 +1,5 @@
 #!/bin/bash
-mkdir ncbi_files
-cd ncbi_files #create new directory to store files
+
 wget ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR566/SRR5660030/SRR5660030.sra
 wget ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR566/SRR5660033/SRR5660033.sra
 wget ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR566/SRR5660044/SRR5660044.sra
