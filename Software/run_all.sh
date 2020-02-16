@@ -32,8 +32,8 @@ do
         fi
         after1=$(wc -l < EF999921_${i}.sam)
         after=$((after1 - 3))
-        before1=$(wc -l < ./ncbi_files/ncbi_files/"${i}"_1.fastq.gz)
-        before2=$(wc -l < ./ncbi_files/ncbi_files/"${i}"_2.fastq.gz)
+        before1=$(wc -l < "${i}"_1.fastq.gz)
+        before2=$(wc -l < "${i}"_2.fastq.gz)
         #before1=$((before1 / 2))
         #before2=$((before2 / 2))
         before=$((before1 + before2))
