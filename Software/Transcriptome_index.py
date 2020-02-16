@@ -9,7 +9,7 @@ SeqIO.write(records[0],'EF999921.fasta', 'fasta') #write out the fasta file for 
 
 outfile = open("CDS_EF999921.txt", 'w') #open write out file
 i = 0 #use i to count the number of CDS entries written out to the file
-for rec in SeqIO.parse('./ncbi_files/EF999921.gb', 'genbank'): #open the genBank file
+for rec in SeqIO.parse('EF999921.gb', 'genbank'): #open the genBank file
         if rec.features: #look at the genbank features
 #Create Transcriptome Index for HCMV
 from Bio import SeqIO
@@ -22,7 +22,7 @@ SeqIO.write(records[0],'EF999921.fasta', 'fasta') #write out the fasta file for 
 
 outfile = open("CDS_EF999921.txt", 'w') #open write out file
 i = 0 #use i to count the number of CDS entries written out to the file
-for rec in SeqIO.parse('./ncbi_files/EF999921.gb', 'genbank'): #open the genBank file
+for rec in SeqIO.parse('EF999921.gb', 'genbank'): #open the genBank file
         if rec.features: #look at the genbank features
                 for feature in rec.features:
                         if feature.type == "CDS": #only write out the CDS features
