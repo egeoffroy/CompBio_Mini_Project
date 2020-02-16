@@ -53,4 +53,5 @@ echo 'spades -k 55,77,99,127 -t 2 -1 EF99921_SRR5660030.fastq -2 EF999921_SRR566
 
 var1=$(python ./Software/contigs_count.py 2>&1)
 echo 'There are' ${var1}'contigs > 1000 bp in the assembly ' >> $log
-echo 'There are __  bp in the assembly' >> $log
+var2=$(python ./Software/contigs_assembly.py 2>&1)
+echo 'There are' ${var2} 'bp in the assembly' >> $log
