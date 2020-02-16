@@ -58,10 +58,11 @@ for i in file:
 a = set(file)
 nodes = set(src).union(set(a))
 nodes_list = list(nodes)
-assembly = findAssembly(nodes_list)
 outfile = open("assembly.txt", 'w') #open the output file
-outfile.write(assembly) #write out the file
+assembly = findAssembly(nodes_list)
+for sub in range(0, len(assembly), 50):
+    outfile.write(assembly[sub:sub+50]) #write out the file
 outfile.close()
-print(len(assembly))
+#print(len(assembly))
 #print(findAssembly(nodes_list))
     
