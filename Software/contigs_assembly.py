@@ -58,7 +58,7 @@ for i in file:
 a = set(file)
 nodes = set(src).union(set(a))
 nodes_list = list(nodes)
-outfile = open("assembly.txt", 'w') #open the output file
+outfile = open("assembly.fasta", 'w') #open the output file
 assembly = findAssembly(nodes_list)
 for sub in range(0, len(assembly), 50):
     outfile.write(assembly[sub:sub+50]) #write out the file
