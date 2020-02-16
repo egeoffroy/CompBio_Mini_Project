@@ -42,9 +42,13 @@ do
         echo ${donor} 'had' ${before} 'read pairs before Bowtie2 filtering and' ${after} 'read pairs after' >> $log
 done
 
+cat EF99921_SRR5660030.sam | grep -v ^@ | awk '{print "@"$1"\n"$10"\n+\n"$11}' > EF99921_SRR5660030.fastq
+cat EF99921_SRR5660033.sam | grep -v ^@ | awk '{print "@"$1"\n"$10"\n+\n"$11}' > EF99921_SRR5660033.fastq
+cat EF99921_SRR5660044.sam | grep -v ^@ | awk '{print "@"$1"\n"$10"\n+\n"$11}' > EF99921_SRR5660044.fastq
+cat EF99921_SRR5660045.sam | grep -v ^@ | awk '{print "@"$1"\n"$10"\n+\n"$11}' > EF99921_SRR5660045.fastq
 
 
-#spades -k 55,77,99,127 -t 2 --pe1-1 ./ncbi_files/ncbi_files/SRR5660030_1.fastq.gz --pe1-2 ./ncbi_files/ncbi_files/SRR5660030_2.fastq.gz  --pe2-1 ./ncbi_files/ncbi_files/SRR5660033_1.fastq.gz --pe2-2 ./ncbi_files/ncbi_files/SRR5660033_2.fastq.gz --pe3-1 ./ncbi_files/ncbi_files/SRR5660044_1.fastq.gz --pe3-2 ./ncbi_files/ncbi_files/SRR5660044_2.fastq.gz --pe4-1 ./ncbi_files/ncbi_files/SRR5660045_1.fastq.gz --pe4-2 ./ncbi_files/ncbi_files/SRR5660045_2.fastq.gz -o ./
-#spades -k 55,77,99,127 -t 2 --pe1-1 SRR5660030_1.fastq.gz -pe1-2 SRR5660030_2.fastq.gz --pe2-1 SRR5660033_1.fastq.gz -pe2-2 SRR5660033_2.fastq.gz --pe3-1 SRR5660044_1.fastq.gz --pe3-2 SRR5660044_2.fastq.gz --pe4-1 SRR5660045_1.fastq.gz --pe4-2 SRR5660045_2.fastq.gz -o ./
+spades -k 55,77,99,127 -t 2 -1 EF99921_SRR5660030.fastq -2 EF999921_SRR5660033.fastq -3 EF999921_SRR5660044.fastq -4 EF999921_SRR5660045.fastq -o ./
+echo 'spades -k 55,77,99,127 -t 2 -1 EF99921_SRR5660030.fastq -2 EF999921_SRR5660033.fastq -3 EF999921_SRR5660044.fastq -4 EF999921_SRR5660045.fastq -o ./' >> $log
 echo 'There are __  contigs > 1000 bp in the assembly ' >> $log
 echo 'There are __  bp in the assembly' >> $log
