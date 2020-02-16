@@ -10,11 +10,11 @@ var=$(python ./Software/Transcriptome_index.py 2>&1)
 echo 'The HCMV genome (EF999921) has ' $var >> $log
 #bash ./Software/split_paired.sh
 #gzip SRR*
-#bash ./Software/kallisto.sh $1 $2 $3 $4
+bash ./Software/kallisto.sh $1 $2 $3 $4
 echo $PWD
 Rscript ./Software/make_sample_covariates.R $1 $2 $3 $4
 Rscript ./Software/sleuth.R
-#bash ./Software/bowtie2.sh $1 $2 $3 $4
+bash ./Software/bowtie2.sh $1 $2 $3 $4
 
 #For each of the SRR values, determine which donor it is from and find the number of read pairs before and after Bowtie$for i in "${SRRs[@]}";
 do
