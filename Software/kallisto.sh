@@ -1,11 +1,13 @@
 #!/bin/bash
+cd ..
 
+#Create the transcriptome reference index
 time kallisto index -i HCMV_index.idx CDS_EF999921.txt
 
+# For each of the user inputted SRRs, run kallisto quantification with their read paired separated files
 declare -a SRR
-SRR=(SRR5660030 SRR5660033 SRR5660044 SRR5660045)
+SRR=($1 $2 $3 $4)
 for i in "${SRR[@]}";
 do
-        time kallisto quant -i index.idx -o ./"${i}" -b 30 -t 4 ./ncbi_files/ncbi_files/"${i}"_1.fastq.gz ./ncbi_files/ncbi_files/"${i}"_2.fastq.gz
+        time kallisto quant -i index.idx -o ./"${i}" -b 30 -t 4 "${i}"_1.fastq.gz "${i}"_2.fastq.gz
 done
-
