@@ -55,3 +55,5 @@ var1=$(python ./Software/contigs_count.py 2>&1)
 echo 'There are' ${var1}'contigs > 1000 bp in the assembly ' >> $log
 var2=$(python ./Software/contigs_length_count.py 2>&1)
 echo 'There are' ${var2} 'bp in the assembly' >> $log
+
+blast=$python( ./Software/blast.py 2>&1) >> $log
