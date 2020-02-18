@@ -1,3 +1,5 @@
+#This file outputs the assembly of the reads 
+
 from Bio.Seq import Seq
 
 def findAssembly(nodes_list):
@@ -63,6 +65,5 @@ assembly = findAssembly(nodes_list)
 for sub in range(0, len(assembly), 50):
     outfile.write(assembly[sub:sub+50]) #write out the file
 outfile.close()
-#print(len(assembly))
-#print(findAssembly(nodes_list))
+
     
