@@ -1,4 +1,5 @@
 #!/bin/bash
+#This file is deprecated and meant for downloading the entire SRA reads off of the NCBI SRA database
 
 wget ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR566/SRR5660030/SRR5660030.sra
 wget ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR566/SRR5660033/SRR5660033.sra
