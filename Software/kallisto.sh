@@ -1,5 +1,4 @@
 #!/bin/bash
-cd ..
 
 #Create the transcriptome reference index
 time kallisto index -i HCMV_index.idx CDS_EF999921.txt
