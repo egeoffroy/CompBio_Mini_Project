@@ -1,4 +1,6 @@
-
+# make the sample covariates file for sleuth
+# sleuth object requires a sample covariates file with the sample name and the path to that folder
+# the sample covariates file includes the four SRR folders
 
 args <- commandArgs(trailingOnly=TRUE)
 print(args)
