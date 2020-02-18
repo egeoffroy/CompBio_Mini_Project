@@ -8,7 +8,11 @@ log=miniProject.log
 curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id=EF999921&rettype=gb&retmode=txt">EF999921.gb
 var=$(python ./Software/Transcriptome_index.py 2>&1)
 echo 'The HCMV genome (EF999921) has ' $var >> $log
-#bash ./Software/split_paired.sh
+if ["$5"]; then
+        bash ./Software/download_files.sh $1 $2 $3 $4
+        bash ./Software/split_paired.sh $1 $2 $3 $4
+fi
+
 #gzip SRR*
 bash ./Software/kallisto.sh $1 $2 $3 $4 ;
 echo $PWD
