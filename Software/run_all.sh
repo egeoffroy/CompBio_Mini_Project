@@ -52,9 +52,10 @@ cat EF99921_SRR5660045.sam | grep -v ^@ | awk '{print "@"$1"\n"$10"\n+\n"$11}' >
 spades -k 55,77,99,127 -t 2 -1 EF99921_SRR5660030.fastq -2 EF999921_SRR5660033.fastq -3 EF999921_SRR5660044.fastq -4 EF999921_SRR5660045.fastq -o ./
 echo 'spades -k 55,77,99,127 -t 2 -1 EF99921_SRR5660030.fastq -2 EF999921_SRR5660033.fastq -3 EF999921_SRR5660044.fastq -4 EF999921_SRR5660045.fastq -o ./' >> $log
 
+python ./Software/contigs_count.py
 var1=$(python ./Software/contigs_count.py 2>&1)
 echo 'There are' ${var1}'contigs > 1000 bp in the assembly ' >> $log
 var2=$(python ./Software/contigs_length_count.py 2>&1)
 echo 'There are' ${var2} 'bp in the assembly' >> $log
-
+python ./Software/contigs_assembly.py
 blast=$python( ./Software/blast.py 2>&1) >> $log
