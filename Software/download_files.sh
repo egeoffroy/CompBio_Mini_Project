@@ -1,7 +1,7 @@
 #!/bin/bash
 #This file is deprecated and meant for downloading the entire SRA reads off of the NCBI SRA database
 declare -a SRR
-SRR=$($1 $2 $3 $4)
+SRR=($1 $2 $3 $4)
 for i in "${SRR[@]}"
 do
   v2=${i::-4}
