@@ -13,12 +13,18 @@ To run this program, move the SRR files you would like to run the program with i
   mv SRR_file CompBio_Mini_Project/SRR_file
 
 ```
-
 From there, set your working directory to CompBio_Mini_Project/Software/ and call the function. The program requires four SRR values as input. 
 ```
   cd CompBio_Mini_Project/Software
   bash run_all.sh SRR1 SRR2 SRR3 SRR4
 ```
+
+Or alternatively, you can use the flag --download to pull the SRA files from the database. 
+```
+  cd CompBio_Mini_Project/Software
+  bash run_all.sh SRR1 SRR2 SRR3 SRR4 --download
+```
+
 ## Test Data 
 To run the software with the test data provided:
 ```
