@@ -6,20 +6,24 @@ echo $SRRs
 cd ..
 log=miniProject.log
 curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id=EF999921&rettype=gb&retmode=txt">EF999921.gb
+
 var=$(python ./Software/Transcriptome_index.py 2>&1)
 echo 'The HCMV genome (EF999921) has ' $var >> $log
 if ["$5"]; then
         bash ./Software/download_files.sh $1 $2 $3 $4
         bash ./Software/split_paired.sh $1 $2 $3 $4
+        #gzip SRR*
 fi
 
-#gzip SRR*
 bash ./Software/kallisto.sh $1 $2 $3 $4 ;
 echo $PWD
 Rscript ./Software/make_sample_covariates.R $1 $2 $3 $4 ;
 Rscript ./Software/sleuth.R ;
 bash ./Software/bowtie2.sh $1 $2 $3 $4 ;
-
+while [ ! -f  EF99921_SRR5660045.sam]
+do
+  sleep 2 # or less like 0.2
+done
 #For each of the SRR values, determine which donor it is from and find the number of read pairs before and after Bowtie2
 for i in "${SRRs[@]}";
 do
