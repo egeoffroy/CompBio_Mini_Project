@@ -16,7 +16,8 @@ Rscript ./Software/make_sample_covariates.R $1 $2 $3 $4
 Rscript ./Software/sleuth.R
 bash ./Software/bowtie2.sh $1 $2 $3 $4
 
-#For each of the SRR values, determine which donor it is from and find the number of read pairs before and after Bowtie$for i in "${SRRs[@]}";
+#For each of the SRR values, determine which donor it is from and find the number of read pairs before and after Bowtie2
+for i in "${SRRs[@]}";
 do
         if [ "${i}" == 'SRR5660030' ]
         then
