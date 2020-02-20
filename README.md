@@ -9,7 +9,9 @@ To run this program from your own working directory, clone this repository to yo
 
 The python modules required for this program are: 
                       os -- https://docs.python.org/3/library/os.html
+                      
                       argparse -- https://docs.python.org/3/library/argparse.html
+                      
                       Biopython -- http://biopython.org/DIST/docs/tutorial/Tutorial.html
                         SeqIO
                         Entrez
@@ -20,7 +22,6 @@ The python modules required for this program are:
 To run this program, move the SRR files you would like to run the program with in the directory CompBio_Mini_Project. This can be done by running:
 ```
   mv SRR_file CompBio_Mini_Project/SRR_file
-
 ```
 From there, set your working directory to CompBio_Mini_Project and call the function. The program requires four SRR values as input. 
 ```
