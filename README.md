@@ -8,7 +8,14 @@ To run this program from your own working directory, clone this repository to yo
 ```
 
 The python modules required for this program are: 
-
+                      os -- https://docs.python.org/3/library/os.html
+                      argparse -- https://docs.python.org/3/library/argparse.html
+                      Biopython -- http://biopython.org/DIST/docs/tutorial/Tutorial.html
+                        SeqIO
+                        Entrez
+                        SearchIO
+                        Seq
+                        NCBIWWW
 ## Directions
 To run this program, move the SRR files you would like to run the program with in the directory CompBio_Mini_Project. This can be done by running:
 ```
