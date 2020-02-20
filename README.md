@@ -42,6 +42,8 @@ To run the software with the test data provided:
   python run_all.py SRR5660030 SRR5660033 SRR5660044 SRR5660045
 ```
 
+This test data consists of the first 1000 read pairs for four SRR files. When running with this tool, expect only one significant contig with length > 1000 bp after running SPades. 
+
 ## Scripts
 
 #### run_all.py : a python script that calls the scripts make_sample_covariates.R, sleuth.R, and sam_to_fastq.sh. It also includes functions that download various SRA files, pulls fasta files and GenBank entries, runs kallisto, runs Bowtie2, run SPades, assembles the reads, counts the number of reads and number of base pairs in the assembly, and runs blast with the assembly against the nr database. 
