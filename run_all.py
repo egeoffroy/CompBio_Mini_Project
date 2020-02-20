@@ -220,5 +220,5 @@ for i in args.SRRs:
 
 run_spades(args.SRRs[0], args.SRRs[1], args.SRRs[2], args.SRRs[3])
 contigs_count()
-run_find_Assembly()
+#run_find_Assembly()
 blast()
