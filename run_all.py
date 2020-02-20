@@ -14,7 +14,6 @@ def Setup(SRR):
     fastq_dump = 'fastq-dump -I --split-files ' + SRR + '.sra'
     os.system(wget_command)
     os.system(fastq_dump)
-    #setup downloads SRR8185310.sra and fastq_dumps the sra file
 
 def Transcriptome_index():
     fasta = 'curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id=EF999921&rettype=gb&retmode=txt">EF999921.gb'
