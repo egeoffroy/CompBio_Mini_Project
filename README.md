@@ -7,12 +7,11 @@ To run this program from your own working directory, clone this repository to yo
   git clone https://github.com/egeoffroy/CompBio_Mini_Project.git
 ```
 
-The python modules required for this program are: 
-                     
+### The python modules required for this program are:                    
 #### os -- https://docs.python.org/3/library/os.html
 #### argparse -- https://docs.python.org/3/library/argparse.html
 #### Biopython -- http://biopython.org/DIST/docs/tutorial/Tutorial.html
-###### The packages within Biopython that are used within the program are SeqIO, SearchIO, NCBIWWW, Seq, 
+###### The packages within Biopython that are used within the program are SeqIO, SearchIO, NCBIWWW, Seq, and Entrez. 
 
 ## Directions
 To run this program, move the SRR files you would like to run the program with in the directory CompBio_Mini_Project. This can be done by running:
