@@ -18,25 +18,28 @@ def Setup(SRR):
 def Transcriptome_index():
     fasta = 'curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id=EF999921&rettype=gb&retmode=txt">EF999921.gb'
     os.system(fasta)
-
+    outfile = open("CDS_EF999921.fasta", 'w') #open the output file
+    i = 0
     Entrez.email = "ecgeoffroy@gmail.com"
     handle = Entrez.efetch(db="nucleotide", id=["EF999921"], rettype="fasta") #obtain plain text records of the GenBank ids in FASTA format from NCBI's [Nucleotide] database.
-    records = list(SeqIO.parse(handle, "fasta"))
-    SeqIO.write(records[0],'EF999921.fasta', 'fasta') #write out the fasta file for bowtie2
-    outfile = open("CDS_EF999921.txt", 'w') #open write out file
-    i = 0 #use i to count the number of CDS entries written out to the file
-    for rec in SeqIO.parse('EF999921.gb', 'genbank'): #open the genBank file
-            if rec.features: #look at the genbank features
-                    for feature in rec.features:
-                            if feature.type == "CDS": #only write out the CDS features
-                                    outfile.write(str(feature))
-                                    i+=1
+    records = list(SeqIO.parse(handle, "fasta")) 
+
+    fasta_out = open("EF999921.fasta", 'w')
+    fasta_out.write(str(records[0].description) + '\n' + str(records[0].seq))
+    fasta_out.close()
+    SeqIO.write(records[0],'EF999921.fasta', 'fasta')
+    for rec in SeqIO.parse("EF999921.gb", "genbank"):
+        if rec.features:
+            for feature in rec.features:
+                if feature.type == "CDS":
+                    outfile.write(str(feature.qualifiers['protein_id']).replace('[', '').replace(']', '').replace("'", '') + ' ' + str(feature.location.extract(rec).seq) + '\n') #write out the file
+                    i+=1
     print(i)
-    outfile.close()
+    outfile.close()  
 
 
 def run_kallisto(SRR):
-    kallisto_build = 'time kallisto index -i HCMV_index.idx EF999921.fasta'
+    kallisto_build = 'time kallisto index -i HCMV_index.idx CDS_EF999921.fasta'
     os.system(kallisto_build)
     kallisto = 'time kallisto quant -i HCMV_index.idx -o ./' + SRR+' -b 30 -t 4 '+ SRR + '_1.fastq ' + SRR+ '_2.fastq'
     os.system(kallisto)
@@ -221,4 +224,4 @@ for i in args.SRRs:
 run_spades(args.SRRs[0], args.SRRs[1], args.SRRs[2], args.SRRs[3])
 contigs_count()
 #run_find_Assembly()
-blast()
+#blast()
