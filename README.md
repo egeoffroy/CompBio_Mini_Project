@@ -7,29 +7,31 @@ To run this program from your own working directory, clone this repository to yo
   git clone https://github.com/egeoffroy/CompBio_Mini_Project.git
 ```
 
+The python modules required for this program are: 
+
 ## Directions
 To run this program, move the SRR files you would like to run the program with in the directory CompBio_Mini_Project. This can be done by running:
 ```
   mv SRR_file CompBio_Mini_Project/SRR_file
 
 ```
-From there, set your working directory to CompBio_Mini_Project/Software/ and call the function. The program requires four SRR values as input. 
+From there, set your working directory to CompBio_Mini_Project and call the function. The program requires four SRR values as input. 
 ```
-  cd CompBio_Mini_Project/Software
-  bash run_all.sh SRR1 SRR2 SRR3 SRR4
+  cd CompBio_Mini_Project
+  python run_all.py SRR1 SRR2 SRR3 SRR4
 ```
 
-Or alternatively, you can use the flag --download to pull the SRA files from the database. 
+Or alternatively, you can use the flag --download_files to pull the SRA files from the database. 
 ```
-  cd CompBio_Mini_Project/Software
-  bash run_all.sh SRR1 SRR2 SRR3 SRR4 --download
+  cd CompBio_Mini_Project
+  python run_all.sh SRR1 SRR2 SRR3 SRR4 --download_files
 ```
 
 ## Test Data 
 To run the software with the test data provided:
 ```
-  cd CompBio_Mini_Project/Software
-  bash run_all.sh SRR5660030 SRR5660033 SRR5660044 SRR5660045
+  cd CompBio_Mini_Project
+  python run_all.py SRR5660030 SRR5660033 SRR5660044 SRR5660045
 ```
 
 ### 15pts
