@@ -31,7 +31,8 @@ def Transcriptome_index():
         if rec.features:
             for feature in rec.features:
                 if feature.type == "CDS": #find the CDS regions and add them to the transcriptome index file
-                    outfile.write('>' + str(feature.qualifiers['protein_id']).replace('[', '').replace(']', '').replace("'", '') + '\n' + str(feature.location.extract(rec).seq) + '\n') $                    i+=1
+                    outfile.write('>' + str(feature.qualifiers['protein_id']).replace('[', '').replace(']', '').replace("'", '') + '\n' + str(feature.location.extract(rec).seq) + '\n') 
+                    i+=1
 
     with open('MiniProject.log', 'a') as output:
         output.write('The HCMV genome (EF999921) has '+ str(i) + '\n') #output how many CDS regions there are in the EF999921 genbank file
@@ -49,7 +50,8 @@ def sam_to_fastq(SRR):
     os.system(fastq)
 
 def run_spades(SRR1, SRR2, SRR3, SRR4):
-    spades_command = 'spades -k 33,55,77,99,127 -t 2 -s EF999921_'+ SRR1 + '.fastq -s EF999921_'+ SRR2 + '.fastq -s EF999921_' + SRR3 + '.fastq -s EF999921_' + SRR4 + '.fastq -o Spades/'    with open('MiniProject.log','a') as output: #run SPades and print out the command to MiniProject.log
+    spades_command = 'spades -k 33,55,77,99,127 -t 2 -s EF999921_'+ SRR1 + '.fastq -s EF999921_'+ SRR2 + '.fastq -s EF999921_' + SRR3 + '.fastq -s EF999921_' + SRR4 + '.fastq -o Spades/'    
+    with open('MiniProject.log','a') as output: #run SPades and print out the command to MiniProject.log
         output.write(spades_command + '\n')
         output.close()
     os.system(spades_command)
@@ -75,7 +77,8 @@ def Count_bowtie(SRR):
     elif SRR == 'SRR5660045':
         donor += 'Donor 3 (6dpi)'
     len_bowtie = len(bowtie_SRR)
-    original1 = open(SRR + '_1.fastq').readlines()                                                                                                                                            original2 = open(SRR + '_2.fastq').readlines() #count the number of reads
+    original1 = open(SRR + '_1.fastq').readlines()                                                                                                                                            
+    original2 = open(SRR + '_2.fastq').readlines() #count the number of reads
     original = len(original1) + len(original2)
     #write out to the log file
     with open('MiniProject.log', 'a') as output:
@@ -86,13 +89,15 @@ def run_sleuth(SRR):
     run_R = 'Rscript make_sample_covariates.R ' + SRR[0] + ' ' + SRR[1]+ ' ' + SRR[2] + ' ' + SRR[3] #make the sample_covariance.txt file
     os.system(run_R)
     run_more_R = 'Rscript sleuth.R' #run sleuth
-    os.system(run_more_R)                                                                                                                                                                     file = open('sleuth_output.txt').readlines()
+    os.system(run_more_R)                                                                                                                                                                     
+    file = open('sleuth_output.txt').readlines()
     with open('MiniProject.log' ,'a') as output:
         for i in range(len(file)):
                 output.write(str(file[i]) + '\n')
     output.close()
 
-def findAssembly(nodes_list):                                                                                                                                                                 for k in reversed(range(2, len(nodes_list[0])+1)): #from k starting at len of list +1 to 2 bc of the function reverse (account for index start at 0)
+def findAssembly(nodes_list):                                                                                                                                                                 
+    for k in reversed(range(2, len(nodes_list[0])+1)): #from k starting at len of list +1 to 2 bc of the function reverse (account for index start at 0)
         mers = set()#create empty set
         for s in nodes_list: #for value in nodes_list
            for i in range(len(s)-k+1): #for i in length of value in list minus k+1
@@ -137,7 +142,8 @@ def GenomeAssemblyShortest(sequences, final_sequence):
     if len(sequences) == 0:
         return final_sequence #return empty string
     elif (len(final_sequence) == 0):
-        final_sequence = sequences.pop(0) #final sequences becomes the first sequence in the list of sequences                                                                                    return GenomeAssemblyShortest(sequences, final_sequence) #rerun with new final-sequence
+        final_sequence = sequences.pop(0) #final sequences becomes the first sequence in the list of sequences                                                                                    
+        return GenomeAssemblyShortest(sequences, final_sequence) #rerun with new final-sequence
     else:
         for i in range(len(sequences)):
             strings = sequences[i]
@@ -163,7 +169,8 @@ def run_find_Assembly():
     src = [] #set of reverse complements
     for i in file:
         sequence = Seq(i)
-        reverse = sequence.reverse_complement()                                                                                                                                                   src.append(str(reverse))
+        reverse = sequence.reverse_complement()                                                                                                                                                   
+        src.append(str(reverse))
     a = set(file)
     nodes = set(src).union(set(a))
     nodes_list = list(nodes)
@@ -181,7 +188,8 @@ def contigs_count():
     outfile = open("./Spades/significant_contigs.txt", "w") # open new file
     for contig in sequences: #for each of the sequences (contigs)
         if len(contig) > 1000: #check if the length of bp is > 1000
-            count +=1 #if it is, add one to count and write out the contig to the file                                                                                                                outfile.write(contig + '\n')
+            count +=1 #if it is, add one to count and write out the contig to the file                                                                                                                
+            outfile.write(contig + '\n')
     outfile.close()
 
     with open('MiniProject.log', 'a') as output:
@@ -195,7 +203,8 @@ def contigs_length_count():
     for contig in file:
         number = len(contig)
         count+= number
-    with open('MiniProject.log', 'a') as output:                                                                                                                                                  output.write("There are " + str(count) + " bp in the assembly" + '\n')  #count the number of bp in the assembly and write out to MiniProject.log
+    with open('MiniProject.log', 'a') as output:                                                                                                                                                  
+        output.write("There are " + str(count) + " bp in the assembly" + '\n')  #count the number of bp in the assembly and write out to MiniProject.log
         output.close()
 
 def blast():
@@ -205,7 +214,8 @@ def blast():
       out_handle.write(handle.read())
     out_handle.close()
     blast_qresult = SearchIO.read("blast.xml", "blast-xml")
-    output = open('MiniProject', 'a')                                                                                                                                                         output.write('seq_title', 'align_len' , 'number_HSPs', 'topHSP_ident', 'topHSP_gaps', 'topHSP_bits', 'topHSP_expect')
+    output = open('MiniProject', 'a')                                                                                                                                                         
+    output.write('seq_title', 'align_len' , 'number_HSPs', 'topHSP_ident', 'topHSP_gaps', 'topHSP_bits', 'topHSP_expect')
     for i in range(0,10):
         hit = blast_qresult[i]
         blast_hsp = blast_qresult[i][0]
@@ -221,7 +231,8 @@ def blast():
 
 
 
-# ----------------- Theoretical Main Function ------------------                                                                                                                          parser = argparse.ArgumentParser(description='Process some SRRs.')
+# ----------------- Theoretical Main Function ------------------                                                                                                                          
+parser = argparse.ArgumentParser(description='Process some SRRs.')
 parser.add_argument('SRRs', metavar='N', type=str, nargs='+', help='SRR values')
 parser.add_argument('--download_files', help='Pull SRA Files from the database and split the paired reads')
 args = parser.parse_args()
@@ -236,7 +247,8 @@ if args.download_files:
         with open('MiniProject.log', 'a') as output:
                 output.write('SRA files downloaded')
                 output.close()
-                                                                                                                                                                                          Transcriptome_index()
+                                                                                                                                                                                          
+Transcriptome_index()
 for i in args.SRRs:
     run_kallisto(i)
 
@@ -247,11 +259,13 @@ for i in args.SRRs:
     Count_bowtie(i)
     sam_to_fastq(i)
 
-run_spades(args.SRRs[0], args.SRRs[1], args.SRRs[2], args.SRRs[3])                                                                                                                        count = contigs_count()
+run_spades(args.SRRs[0], args.SRRs[1], args.SRRs[2], args.SRRs[3])                                                                                                                        
+                     count = contigs_count()
 contigs_length_count()
 if count > 1: #if there is more than one significant contig, run the assembly
         run_find_Assembly()
-else: #otherwise just make that one contig the assembly                                                                                                                                           file = open("./Spades/significant_contigs.txt").readlines()#
+else: #otherwise just make that one contig the assembly                                                                                                                                           
+        file = open("./Spades/significant_contigs.txt").readlines()#
         for i in file:
                 with open('assembly.fasta', 'a') as outfile:
                      outfile.write(i)
