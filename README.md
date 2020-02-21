@@ -57,6 +57,24 @@ This test data consists of the first 2000 read pairs for four SRR files. When ru
 
 
 
+## Output
+
+#### MiniProject.log : a log file that contains various information from the tests with your inputted data. This includes the number of base pairs in the assembly, number of contigs with bp > 1000, top ten sleuth hits, top ten BLAST hits, etc. 
+
+#### sample_covariates.txt : a file containing the sample names, paths, and conditions in order to run sleuth.R
+
+#### assembly.fasta : the assembled significant contigs. 
+
+#### significant_contigs.txt : a file listing the contigs with more than 1000 bp. 
+
+#### blast.xlm : blast output file.
+
+
+
+
+
+
+
 
 
 
