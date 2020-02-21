@@ -261,7 +261,7 @@ for i in args.SRRs:
     sam_to_fastq(i)
 
 run_spades(args.SRRs[0], args.SRRs[1], args.SRRs[2], args.SRRs[3])                                                                                                                        
-                     count = contigs_count()
+count = contigs_count()
 contigs_length_count()
 if count > 1: #if there is more than one significant contig, run the assembly
         run_find_Assembly()
