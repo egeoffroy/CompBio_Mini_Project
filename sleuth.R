@@ -24,8 +24,9 @@ sleuth_table <- sleuth_results(so, 'reduced:full', 'lrt', show_all = FALSE)
 #filter most significant results (FDR/qval < 0.05)
 sleuth_significant<- dplyr::filter(sleuth_table, qval <= 0.05) %>% dplyr::arrange(pval)
 head(sleuth_significant)
-
+#sleuth_significnat <- dplyr::select(sleuth_significant, target_id, pval, qval)
 #write top 10 transcripts to file
 sleuth_significant <- data.frame(sleuth_significant$target_id, sleuth_significant$test_stat, sleuth_significant$pval, sleuth_significant$qval)
-colnames(sleuth_significant) <- c("target_id", "test_stat", "pval", "qval")
-write.table(sleuth_significant[c(1:10), ], file="sleuth_output.txt",quote = FALSE,row.names = FALSE) #write out a file for sleuth_significant that will be added to MiniProject.log
+colnames(sleuth_significant) <- c("target_id", "test_stat", "pval","qval")
+sleuth_significant <- na.omit(sleuth_significant[c(1:10), ])
+write.table(sleuth_significant, file="sleuth_output.txt",quote = FALSE,row.names = FALSE)
