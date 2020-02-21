@@ -136,7 +136,7 @@ def contigs_length_count():
 
 def blast():
     fasta = open("assembly.fasta").read()
-    handle = NCBIWWW.qblast("blastn", "nr", fasta) #run blast against the assembled sequence
+    handle = NCBIWWW.qblast("blastn", "nr", fasta, entrez_query='10292') #run blast against the assembled sequence
     with open("blast.xml", "w") as out_handle:
       out_handle.write(handle.read())
     out_handle.close()
