@@ -142,16 +142,11 @@ def blast():
     out_handle.close()
     blast_qresult = SearchIO.read("blast.xml", "blast-xml")
     output = open('MiniProject', 'a')                                                                                                                                                         
-    output.write('seq_title', 'align_len' , 'number_HSPs', 'topHSP_ident', 'topHSP_gaps', 'topHSP_bits', 'topHSP_expect')
+    output.write('seq_title'+ 'align_len' + 'number_HSPs'+ 'topHSP_ident'+ 'topHSP_gaps'+ 'topHSP_bits'+ 'topHSP_expect')
     for i in range(0,10):
         hit = blast_qresult[i]
         blast_hsp = blast_qresult[i][0]
         output.write(str(hit.id) + ' ' + str(hit.seq_len) + ' '+ str(len(hit.hsps)) + ' ' + str(blast_hsp.ident_num) + ' ' + str(blast_hsp.gap_num) + ' ' + str(blast_hsp.bitscore)+ ' ' +str(blast_hsp.evalue))
-                     #hit = blast_qresult[0]
-    #blast_hsp = blast_qresult[0][0]
-    #print(str(hit.id) + ' ' + str(hit.seq_len) + ' '+ str(len(hit.hsps)) + ' ' + str(blast_hsp.ident_num) + ' ' + str(blast_hsp.gap_num) + ' ' + str(blast_hsp.bitscore)+ ' '+str(blast_$    #for hit in blast_qresult[:10]: # id and sequence length of the first ten hits
-    #  with open('MiniProject.log', 'a') as output:
-    #      output.write("%s %i" %(hit.id, hit.seq_len, len(hit.hsps), hit.gap_num, hit.bitscore, hit.evalue) + '\n')
     output.close()
 
 
@@ -198,5 +193,4 @@ else: #otherwise just make that one contig the assembly
                 with open('assembly.fasta', 'a') as outfile:
                      outfile.write(i)
                      outfile.close()
-#contigs_length_count()
 blast()   
