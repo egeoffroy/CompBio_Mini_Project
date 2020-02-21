@@ -2,9 +2,10 @@ library(sleuth)
 library(data.table)
 library(dplyr)
 
-stab <- read.table("sample_covariates.txt", header=TRUE, stringsAsFactors=FALSE, sep = ' ')
+#upload the sample covariates file with the path, sample names, and conditions needed
+stab <- read.table("sample_covariates.txt", header=TRUE, stringsAsFactors=FALSE, sep = ',')
 print(stab)
-#colnames(stab) <- c("sample", "path")
+
 so <- sleuth_prep(stab)
 so
 #fit a model comparing the two conditions
@@ -18,11 +19,13 @@ so<- sleuth_lrt(so, 'reduced', 'full')
 
 
 #extract the test results from the sleuth object
-sleuth_table<- sleuth_results(so, 'reduced:full', 'lrt', show_all = FALSE)
+sleuth_table <- sleuth_results(so, 'reduced:full', 'lrt', show_all = FALSE)
 
 #filter most significant results (FDR/qval < 0.05)
 sleuth_significant<- dplyr::filter(sleuth_table, qval <= 0.05) %>% dplyr::arrange(pval)
 head(sleuth_significant)
-head(dplyr::select(sleuth_significant, target_id, pval, qval), n=10)
+
 #write top 10 transcripts to file
-write.table(sleuth_significant, file="significant.txt",quote = FALSE,row.names = FALSE)
+sleuth_significant <- data.frame(sleuth_significant$target_id, sleuth_significant$test_stat, sleuth_significant$pval, sleuth_significant$qval)
+colnames(sleuth_significant) <- c("target_id", "test_stat", "pval", "qval")
+write.table(sleuth_significant[c(1:10), ], file="sleuth_output.txt",quote = FALSE,row.names = FALSE) #write out a file for sleuth_significant that will be added to MiniProject.log
