@@ -1,3 +1,4 @@
+
 # make the sample covariates file for sleuth
 # sleuth object requires a sample covariates file with the sample name and the path to that folder
 # the sample covariates file includes the four SRR folders
@@ -11,7 +12,7 @@ make_sample_to_covariates <- function(x, x1, x2, x3){
   #path <- c(x, x1, x2, x3)
   condition <- c("Donor1", "Donor1", "Donor3", "Donor3")
   data <- data.frame(sample=sample, path=path, condition=condition)
-  write.table(data, 'sample_covariates.txt', quote=F, row.names = F, col.names = T)
+  write.table(data, 'sample_covariates.txt', quote=F, row.names = F, col.names = T, sep = ',')
 }
 
 make_sample_to_covariates(args[1], args[2], args[3], args[4])
