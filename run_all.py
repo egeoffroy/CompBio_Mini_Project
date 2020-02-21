@@ -219,7 +219,8 @@ def blast():
     for i in range(0,10):
         hit = blast_qresult[i]
         blast_hsp = blast_qresult[i][0]
-        output.write(str(hit.id) + ' ' + str(hit.seq_len) + ' '+ str(len(hit.hsps)) + ' ' + str(blast_hsp.ident_num) + ' ' + str(blast_hsp.gap_num) + ' ' + str(blast_hsp.bitscore)+ ' ' $    #hit = blast_qresult[0]
+        output.write(str(hit.id) + ' ' + str(hit.seq_len) + ' '+ str(len(hit.hsps)) + ' ' + str(blast_hsp.ident_num) + ' ' + str(blast_hsp.gap_num) + ' ' + str(blast_hsp.bitscore)+ ' ' +str(blast_hsp.evalue))
+                     #hit = blast_qresult[0]
     #blast_hsp = blast_qresult[0][0]
     #print(str(hit.id) + ' ' + str(hit.seq_len) + ' '+ str(len(hit.hsps)) + ' ' + str(blast_hsp.ident_num) + ' ' + str(blast_hsp.gap_num) + ' ' + str(blast_hsp.bitscore)+ ' '+str(blast_$    #for hit in blast_qresult[:10]: # id and sequence length of the first ten hits
     #  with open('MiniProject.log', 'a') as output:
