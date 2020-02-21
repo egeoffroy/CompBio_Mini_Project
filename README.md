@@ -27,13 +27,13 @@ From there, set your working directory to CompBio_Mini_Project and call the func
 Or alternatively, you can use the flag --download_files to pull the SRA files from the database. 
 ```
   cd CompBio_Mini_Project
-  python run_all.sh SRR1 SRR2 SRR3 SRR4 --download_files
+  python run_all.py SRR1 SRR2 SRR3 SRR4 --download_files
 ```
 
 Or to run it from the background,
 ```
   cd CompBio_Mini_Project
-  nohup python run_all.sh SRR1 SRR2 SRR3 SRR4 --download_files &
+  nohup python run_all.py SRR1 SRR2 SRR3 SRR4 --download_files &
 ```
 ## Test Data 
 To run the software with the test data provided:
