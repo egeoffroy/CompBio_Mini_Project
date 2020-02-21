@@ -103,7 +103,6 @@ def concat_contigs():
     final_seq = '' #create empty string for the assembly to be inputted to
     for i in range(len(file)):
         final_seq += file[i] + 'NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN'
-    print(final_seq)                                                                                                        
     output1 = open('assembly.fasta' , 'a')                                #write out the final sequence to the assembly.fasta file                                                  
     output1.write(final_seq)
     output1.close()
