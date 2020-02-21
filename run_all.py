@@ -96,89 +96,17 @@ def run_sleuth(SRR):
                 output.write(str(file[i]) + '\n')
     output.close()
 
-def findAssembly(nodes_list):                                                                                                                                                                 
-    for k in reversed(range(2, len(nodes_list[0])+1)): #from k starting at len of list +1 to 2 bc of the function reverse (account for index start at 0)
-        mers = set()#create empty set
-        for s in nodes_list: #for value in nodes_list
-           for i in range(len(s)-k+1): #for i in length of value in list minus k+1
-                mers.add(s[i:i+k]) #add kmer to set
-        final_string = None
-        substrings = []
-        substrings.append(([], set()))
-        while len(substrings) > 0 and final_string == None:
-            path, vs = substrings.pop() #assign values
-#            print(path)
-            if len(path) == 0: #insert all kmer values as list and as set into stack
-                for mer in mers:
-                    substrings.append(([mer], set([mer]))) #add each mer to the list
-            else:
-                mer = path[-1] #mer is last value in list path
-                print(mer)
-                for a in "ACGT": #for each nucleotide
-                    nmer = mer[1:] + a #next mer is the mer[1:] and the next nucleotide a
-                    if nmer in mers and nmer != str(Seq(mer).reverse_complement()): #if next mer is in mers and it is not equal to a reverse complement
-                        if nmer == path[0]: #if next mer is equal to
-                            final_string = list(path)
-                            break
-                        elif not nmer in vs:
-                            substrings.append((path + [nmer], vs.union(set([nmer]))))
-        #print(stack)
-        if final_string != None: #if final string isn't empty
-            output = final_string[0] #assign first value to output
-            for i in range(1, len(final_string)):
-                output += final_string[i][-1]  #add each value in final_string to the output but subtract the first letter
-            #print(output)
-            output = output[:-(k-1)] #remove
-            doutput = output + output
-            result = True #create boolean variable
-
-            for dna in nodes_list:
-                if doutput.find(dna) == -1 and doutput.find(str(Seq(dna).reverse_complement())) == -1:
-                    result = False
-            if result:
-                return(output)
-                break
-def GenomeAssemblyShortest(sequences, final_sequence):
-    if len(sequences) == 0:
-        return final_sequence #return empty string
-    elif (len(final_sequence) == 0):
-        final_sequence = sequences.pop(0) #final sequences becomes the first sequence in the list of sequences                                                                                    
-        return GenomeAssemblyShortest(sequences, final_sequence) #rerun with new final-sequence
-    else:
-        for i in range(len(sequences)):
-            strings = sequences[i]
-            string_length = len(strings) // 2 #length of strings divided by 2
-            #print(string_length)
-            for j in range(string_length): #for j in len of strings divided by 2
-                c = len(strings) - j #c is length strings minus j
-                if final_sequence.startswith(strings[j:]): #if the final sequence starts with a chunk of the next sequence
-                    sequences.pop(i) #remove item from list
-                    final_sequence = strings[:j] + final_sequence
-                    return GenomeAssemblyShortest(sequences, final_sequence) #rerun function with string chunk added to final sequence
-                #check from the opposite side
-                if final_sequence.endswith(strings[:c]):
-                    sequences.pop(i) #remove item from list
-                    final_sequence = final_sequence + strings[c:]
-                    return GenomeAssemblyShortest(sequences, final_sequence)
-
-
-
-def run_find_Assembly():
-    file = open("./Spades/significant_contigs.txt") #input file
-    file = file.read().split()
-    src = [] #set of reverse complements
-    for i in file:
-        sequence = Seq(i)
-        reverse = sequence.reverse_complement()                                                                                                                                                   
-        src.append(str(reverse))
-    a = set(file)
-    nodes = set(src).union(set(a))
-    nodes_list = list(nodes)
-    outfile = open("assembly.fasta", 'a') #open the output file
-    assembly = findAssembly(nodes_list) #find the Assembly for the Spades contigs
-    for sub in range(0, len(assembly), 50):
-        outfile.write(assembly[sub:sub+50]) #write out the file
-    outfile.close()
+#Assemble contigs > 1000 bp
+def concat_contigs():
+    file = open('./Spades/significant_contigs.txt') #input file                                                             
+    file = file.read().split() #split the file
+    final_seq = '' #create empty string for the assembly to be inputted to
+    for i in range(len(file)):
+        final_seq += file[i] + 'NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN'
+    print(final_seq)                                                                                                        
+    output1 = open('assembly.fasta' , 'a')                                #write out the final sequence to the assembly.fasta file                                                  
+    output1.write(final_seq)
+    output1.close()
     
 def contigs_count():
     sequences = [] #make empty array
@@ -264,7 +192,7 @@ run_spades(args.SRRs[0], args.SRRs[1], args.SRRs[2], args.SRRs[3])
 count = contigs_count()
 contigs_length_count()
 if count > 1: #if there is more than one significant contig, run the assembly
-        run_find_Assembly()
+        concat_contigs()
 else: #otherwise just make that one contig the assembly                                                                                                                                           
         file = open("./Spades/significant_contigs.txt").readlines()#
         for i in file:
