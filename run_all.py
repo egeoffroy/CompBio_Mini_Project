@@ -9,8 +9,9 @@ from Bio.Seq import Seq
 path = os.getcwd()
 
 def Setup(SRR):
-    SRR1 = SRR[0:5] #first five values of SRR
-    wget_command = 'wget ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/' + SRR1 + '/' + SRR+ '/'+ SRR+ '.sra'
+    #SRR1 = SRR[0:5] #first five values of SRR
+    #https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos2/sra-pub-run-11/SRR5660030/SRR5660030.1
+    wget_command = 'wget https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos2/sra-pub-run-11/' + SRR+ '/'+ SRR+ '.1'
     fastq_dump = 'fastq-dump -I --split-files ' + SRR + '.sra' #split the sra files into paired reads
     os.system(wget_command) #run the commands
     os.system(fastq_dump)
@@ -159,14 +160,14 @@ def blast():
 # ----------------- Theoretical Main Function ------------------                                                                                                                          
 parser = argparse.ArgumentParser(description='Process some SRRs.')
 parser.add_argument('SRRs', metavar='N', type=str, nargs='+', help='SRR values')
-parser.add_argument('--download_files', help='Pull SRA Files from the database and split the paired reads')
+parser.add_argument('--download_files', default='N', help='Pull SRA Files from the database and split the paired reads')
 args = parser.parse_args()
 with open('MiniProject.log', 'a') as output:
   output.write('SRA values tested: ' + str(args.SRRs) + '\n')
   output.close()
 #print(args.SRRs)
 
-if args.download_files:
+if args.download_files != 'N':
     for i in args.SRRs:
         Setup(i)
         with open('MiniProject.log', 'a') as output:
