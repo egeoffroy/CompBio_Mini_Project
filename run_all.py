@@ -61,7 +61,6 @@ def bowtie_build(SRR):
     bowtie_command = 'bowtie2-build ./CDS_EF999921.fasta EF999921'
     os.system(bowtie_command)
     #maps transcriptome reads to the index we just created, generating sam file
-    os.system('fastq-dump -I --split-files' + SRR + '.sra')
     bowtie_command2 = 'bowtie2 --quiet -x EF999921 -1 '+ SRR+ '_1.fastq -2 ' + SRR+ '_2.fastq -S EF999921_' + SRR+ '.sam'
     os.system(bowtie_command2)
 
