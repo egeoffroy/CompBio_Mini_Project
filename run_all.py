@@ -66,7 +66,7 @@ def bowtie_build(SRR):
     os.system(bowtie_command2)
 
 def Count_bowtie(SRR):
-    bowtie_SRR = open('EF999921_' + SRR + '.sam').readlines()
+    bowtie_SRR = open('EF999921_' + SRR + '.fastq').readlines()
     donor = ''
     if SRR == 'SRR5660030':
         donor += 'Donor 1 (2dpi)'
@@ -182,8 +182,9 @@ run_sleuth(args.SRRs)
 
 for i in args.SRRs:
     bowtie_build(i)
-    Count_bowtie(i)
     sam_to_fastq(i)
+    Count_bowtie(i)
+    
 
 run_spades(args.SRRs[0], args.SRRs[1], args.SRRs[2], args.SRRs[3])                                                                                                                        
 count = contigs_count()
