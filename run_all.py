@@ -75,7 +75,7 @@ def Count_bowtie(SRR):
         donor += 'Donor 3 (2dpi)'
     elif SRR == 'SRR5660045':
         donor += 'Donor 3 (6dpi)'
-    len_bowtie = len(bowtie_SRR)
+    len_bowtie = len(bowtie_SRR)/4
     original1 = open(SRR + '_1.fastq').readlines()                                                                                                                                            
     original2 = open(SRR + '_2.fastq').readlines() #count the number of reads
     original = len(original1) + len(original2)
