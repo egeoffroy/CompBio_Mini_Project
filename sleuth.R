@@ -28,5 +28,7 @@ head(sleuth_significant)
 #write top 10 transcripts to file
 sleuth_significant <- data.frame(sleuth_significant$target_id, sleuth_significant$test_stat, sleuth_significant$pval, sleuth_significant$qval)
 colnames(sleuth_significant) <- c("target_id", "test_stat", "pval","qval")
-sleuth_significant <- na.omit(sleuth_significant[c(1:10), ])
-write.table(sleuth_significant, file="sleuth_output.txt",quote = FALSE,row.names = FALSE)
+sleuth_significant <- na.omit(sleuth_significant)
+write.table(sleuth_significant, file="sleuth_all_hits.txt", quote=F, row.names=F)
+sleuth_significant_top <- sleuth_significant[c(1:10), ]
+write.table(sleuth_significant_top, file="sleuth_output.txt",quote = FALSE,row.names = FALSE)
