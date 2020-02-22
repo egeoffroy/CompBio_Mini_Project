@@ -11,8 +11,8 @@ path = os.getcwd()
 def Setup(SRR):
     #SRR1 = SRR[0:5] #first five values of SRR
     #https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos2/sra-pub-run-11/SRR5660030/SRR5660030.1
-    wget_command = 'wget https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos2/sra-pub-run-11/' + SRR+ '/'+ SRR+ '.1 ./' + SRR + '.sra'
-    fastq_dump = 'fastq-dump -I --split-files ' + SRR + '.sra' #split the sra files into paired reads
+    wget_command = 'wget https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos2/sra-pub-run-11/' + SRR+ '/'+ SRR+ '.1 '
+    fastq_dump = 'fastq-dump -I --split-files ' + SRR + '.1' #split the sra files into paired reads
     os.system(wget_command) #run the commands
     os.system(fastq_dump)
 
