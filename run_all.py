@@ -171,7 +171,7 @@ if args.download_files != 'N':
     for i in args.SRRs:
         Setup(i)
         with open('MiniProject.log', 'a') as output:
-                output.write('SRA files downloaded')
+                output.write(i + ' SRA file downloaded \n')
                 output.close()
                                                                                                                                                                                           
 Transcriptome_index()
