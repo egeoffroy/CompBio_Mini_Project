@@ -43,7 +43,7 @@ def Transcriptome_index():
 def run_kallisto(SRR):
     kallisto_build = 'time kallisto index -i HCMV_index.idx CDS_EF999921.fasta' ##create the transcriptome index in kallisto
     os.system(kallisto_build)
-    kallisto = 'time kallisto quant -i HCMV_index.idx -o ./' + SRR+' -b 30 -t 4 '+ SRR + '_1.fastq ' + SRR+ '_2.fastq' #run kallisto for each of the SRRs
+    kallisto = 'time kallisto quant -i HCMV_index.idx -o ./' + SRR+' -b 30 -t 4 '+ SRR + '.1_1.fastq ' + SRR+ '.1_2.fastq' #run kallisto for each of the SRRs
     os.system(kallisto)
 
 def sam_to_fastq(SRR):
@@ -62,7 +62,7 @@ def bowtie_build(SRR):
     bowtie_command = 'bowtie2-build ./CDS_EF999921.fasta EF999921'
     os.system(bowtie_command)
     #maps transcriptome reads to the index we just created, generating sam file
-    bowtie_command2 = 'bowtie2 --quiet --no-unal -x EF999921 -1 '+ SRR+ '_1.fastq -2 ' + SRR+ '_2.fastq -S EF999921_' + SRR+ '.sam'
+    bowtie_command2 = 'bowtie2 --quiet --no-unal -x EF999921 -1 '+ SRR+ '.1_1.fastq -2 ' + SRR+ '.1_2.fastq -S EF999921_' + SRR+ '.sam'
     os.system(bowtie_command2)
 
 def Count_bowtie(SRR):
@@ -77,8 +77,8 @@ def Count_bowtie(SRR):
     elif SRR == 'SRR5660045':
         donor += 'Donor 3 (6dpi)'
     len_bowtie = len(bowtie_SRR)/4
-    original1 = open(SRR + '_1.fastq').readlines()                                                                                                                                            
-    original2 = open(SRR + '_2.fastq').readlines() #count the number of reads
+    original1 = open(SRR + '.1_1.fastq').readlines()                                                                                                                                            
+    original2 = open(SRR + '.1_2.fastq').readlines() #count the number of reads
     original = len(original1) + len(original2)
     #write out to the log file
     with open('MiniProject.log', 'a') as output:
