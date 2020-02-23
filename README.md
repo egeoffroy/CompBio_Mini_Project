@@ -48,7 +48,7 @@ This test data consists of the first 2000 lines for the four SRR paired read fil
 
 #### run_all.py : a python script that calls the scripts make_sample_covariates.R, sleuth.R, and sam_to_fastq.sh. It also includes functions that download various SRA files, pulls fasta files and GenBank entries, runs kallisto, runs Bowtie2, run SPades, assembles the reads, counts the number of reads and number of base pairs in the assembly, and runs blast with the assembly against the nr database. 
 
-#### make_sample_covariates.R : a R script that makes a sleuth prep file with columns sample, path, and condition. Sample is the name of the SRR. Path is the file path to the directory of the kallisto output, and condition identifies whether the read is from Donor 1 or Donor 3.
+#### make_sample_covariates.R : a R script that makes a sleuth prep file with columns sample, path, and condition. Sample is the name of the SRR. Path is the file path to the directory of the kallisto output, and condition identifies whether the read is from day 2 or day 6
 
 #### sleuth.R : a R script that creates a sleuth object and identifies differentially expressed genes between two timepoints.
 
@@ -61,13 +61,17 @@ This test data consists of the first 2000 lines for the four SRR paired read fil
 
 #### MiniProject.log : a log file that contains various information from the tests with your inputted data. This includes the number of base pairs in the assembly, number of contigs with bp > 1000, top ten sleuth hits, top ten BLAST hits, etc. 
 
-#### sample_covariates.txt : a file containing the sample names, paths, and conditions in order to run sleuth.R
+ EF999921.gb : a genbank file for EF999921
+ 
+ CDS_EF999921.fasta : a fasta file for only the coding regions of EF999921 
+ 
+ sample_covariates.txt : a file containing the sample names, paths, and conditions in order to run sleuth.R
 
-#### assembly.fasta : the assembled significant contigs. 
+ assembly.fasta : the assembled significant contigs. 
 
-#### significant_contigs.txt : a file listing the contigs with more than 1000 bp. 
+ significant_contigs.txt : a file listing the contigs with more than 1000 bp. 
 
-#### blast.xlm : blast output file.
+ blast.xlm : the blast output file.
 
 
 
