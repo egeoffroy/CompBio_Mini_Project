@@ -69,7 +69,7 @@ def Count_bowtie(SRR, number):
     bowtie_SRR = open('EF999921_' + SRR + '.fastq').readlines()
     donor = ''
     if number == 1:
-        donor += 'Donor 1 (2dpi)' #This is specific for the particular reads --> probably could make each run one of the values 
+        donor += 'Donor 1 (2dpi)' 
     elif number == 2:
         donor += 'Donor 1 (6dpi)'
     elif number == 3:
