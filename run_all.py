@@ -5,11 +5,11 @@ from Bio import Entrez
 from Bio import SearchIO
 from Bio.Blast import NCBIWWW
 from Bio.Seq import Seq
-#import csv
+
 path = os.getcwd()
 
 def Setup(SRR):
-    #SRR1 = SRR[0:5] #first five values of SRR
+    #SRR1 = SRR[0:5] #first five values of SRR --> deprecated
     #https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos2/sra-pub-run-11/SRR5660030/SRR5660030.1
     wget_command = 'wget https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos2/sra-pub-run-11/' + SRR+ '/'+ SRR+ '.1 '
     fastq_dump = 'fastq-dump -I --split-files ' + SRR + '.1' #split the sra files into paired reads
@@ -42,7 +42,7 @@ def Transcriptome_index():
 
 def run_kallisto(SRR):
     kallisto_build = 'time kallisto index -i HCMV_index.idx CDS_EF999921.fasta' ##create the transcriptome index in kallisto
-    os.system(kallisto_build)
+    os.system(kallisto_build) #run command 
     kallisto = 'time kallisto quant -i HCMV_index.idx -o ./' + SRR+' -b 30 -t 4 '+ SRR + '.1_1.fastq ' + SRR+ '.1_2.fastq' #run kallisto for each of the SRRs
     os.system(kallisto)
 
@@ -69,7 +69,7 @@ def Count_bowtie(SRR):
     bowtie_SRR = open('EF999921_' + SRR + '.fastq').readlines()
     donor = ''
     if SRR == 'SRR5660030':
-        donor += 'Donor 1 (2dpi)'
+        donor += 'Donor 1 (2dpi)' #This is specific for the particular reads --> probably could make each run one of the values 
     elif SRR == 'SRR5660033':
         donor += 'Donor 1 (6dpi)'
     elif SRR == 'SRR5660044':
@@ -93,7 +93,7 @@ def run_sleuth(SRR):
     file = open('sleuth_output.txt').readlines()
     with open('MiniProject.log' ,'a') as output:
         for i in range(len(file)):
-                output.write(str(file[i]) + '\n')
+                output.write(str(file[i]) + '\n') #print out the top sleuth hits
     output.close()
 
 #Assemble contigs > 1000 bp
@@ -128,7 +128,7 @@ def contigs_length_count():
     file = open("./Spades/significant_contigs.txt").readlines()
     count=0
     for contig in file:
-        number = len(contig)
+        number = len(contig) #add up the number of bp in the assembly
         count+= number
     with open('MiniProject.log', 'a') as output:                                                                                                                                                  
         output.write("There are " + str(count) + " bp in the assembly" + '\n')  #count the number of bp in the assembly and write out to MiniProject.log
@@ -144,7 +144,7 @@ def blast():
     output = open('MiniProject.log', 'a')                                                                                                                                                         
     output.write('seq_title'+ 'align_len' + 'number_HSPs'+ 'topHSP_ident'+ 'topHSP_gaps'+ 'topHSP_bits'+ 'topHSP_expect')
     max_blast_id = 10
-    if len(blast_qresult) < 10:
+    if len(blast_qresult) < 10: #prevents program from crashing when there are less than 10 results
         max_blast_id = len(blast_qresult)
     for i in range(0,max_blast_id):
         hit = blast_qresult[i]
@@ -162,10 +162,11 @@ parser = argparse.ArgumentParser(description='Process some SRRs.')
 parser.add_argument('SRRs', metavar='N', type=str, nargs='+', help='SRR values')
 parser.add_argument('--download_files', default='N', help='Pull SRA Files from the database and split the paired reads')
 args = parser.parse_args()
+
+# Call all of the functions using the user given SRRs
 with open('MiniProject.log', 'a') as output:
   output.write('SRA values tested: ' + str(args.SRRs) + '\n')
   output.close()
-#print(args.SRRs)
 
 if args.download_files != 'N':
     for i in args.SRRs:
@@ -179,7 +180,6 @@ for i in args.SRRs:
     run_kallisto(i)
 
 run_sleuth(args.SRRs)
-
 for i in args.SRRs:
     bowtie_build(i)
     sam_to_fastq(i)
