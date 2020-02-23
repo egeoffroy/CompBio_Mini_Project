@@ -142,7 +142,7 @@ def blast():
     out_handle.close()
     blast_qresult = SearchIO.read("blast.xml", "blast-xml")
     output = open('MiniProject.log', 'a')                                                                                                                                                         
-    output.write('seq_title'+ 'align_len' + 'number_HSPs'+ 'topHSP_ident'+ 'topHSP_gaps'+ 'topHSP_bits'+ 'topHSP_expect')
+    output.write('seq_title '+ 'align_len ' + 'number_HSPs '+ 'topHSP_ident '+ 'topHSP_gaps '+ 'topHSP_bits '+ 'topHSP_expect ')
     max_blast_id = 10
     if len(blast_qresult) < 10: #prevents program from crashing when there are less than 10 results
         max_blast_id = len(blast_qresult)
