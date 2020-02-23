@@ -65,16 +65,16 @@ def bowtie_build(SRR):
     bowtie_command2 = 'bowtie2 --quiet --no-unal -x EF999921 -1 '+ SRR+ '.1_1.fastq -2 ' + SRR+ '.1_2.fastq -S EF999921_' + SRR+ '.sam'
     os.system(bowtie_command2)
 
-def Count_bowtie(SRR):
+def Count_bowtie(SRR, number):
     bowtie_SRR = open('EF999921_' + SRR + '.fastq').readlines()
     donor = ''
-    if SRR == 'SRR5660030':
+    if number == 1:
         donor += 'Donor 1 (2dpi)' #This is specific for the particular reads --> probably could make each run one of the values 
-    elif SRR == 'SRR5660033':
+    elif number == 2:
         donor += 'Donor 1 (6dpi)'
-    elif SRR == 'SRR5660044':
+    elif number == 3:
         donor += 'Donor 3 (2dpi)'
-    elif SRR == 'SRR5660045':
+    elif number == 4:
         donor += 'Donor 3 (6dpi)'
     len_bowtie = (len(bowtie_SRR)/4)
     original1 = open(SRR + '.1_1.fastq').readlines()                                                                                                                                            
@@ -180,10 +180,12 @@ for i in args.SRRs:
     run_kallisto(i)
 
 run_sleuth(args.SRRs)
+number = 1
 for i in args.SRRs:
     bowtie_build(i)
     sam_to_fastq(i)
-    Count_bowtie(i)
+    Count_bowtie(i, number)
+    number+=1
     
 
 run_spades(args.SRRs[0], args.SRRs[1], args.SRRs[2], args.SRRs[3])                                                                                                                        
