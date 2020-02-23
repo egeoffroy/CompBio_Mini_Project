@@ -33,7 +33,7 @@ Or alternatively, you can use the flag --download_files to pull the SRA files fr
 Or to run it from the background,
 ```
   cd CompBio_Mini_Project
-  nohup python run_all.py SRR1 SRR2 SRR3 SRR4 --download_files &
+  nohup python run_all.py SRR1 SRR2 SRR3 SRR4 --download_files Y &
 ```
 ## Test Data 
 To run the software with the test data provided:
