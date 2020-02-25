@@ -51,7 +51,7 @@ def sam_to_fastq(SRR):
     os.system(fastq)
 
 def run_spades(SRR1, SRR2, SRR3, SRR4):
-    spades_command = 'spades -k 55,77,99,127 --only-assembler -t 2 -s EF999921_'+ SRR1 + '.fastq -s EF999921_'+ SRR2 + '.fastq -s EF999921_' + SRR3 + '.fastq -s EF999921_' + SRR4 + '.fastq -o Spades/'    
+    spades_command = 'spades -k 55,77,99,127 --only-assembler -t 2 --pe1-1 EF999921_'+ SRR1 + '.1 --pe1-2 EF999921_'+ SRR1 + '.2 --pe2-1 EF999921_'+ SRR2 + '.1 --pe2-2 EF999921_' + SRR2 + '.2 --pe3-1 EF999921_' + SRR3 + '.1 --pe3-2 EF999921_' + SRR3 +'.2 --pe4-1 EF999921_' + SRR4 + '.1 --pe4-2 EF999921_' + SRR4 + '.2 -o Spades/'    
     with open('MiniProject.log','a') as output: #run SPades and print out the command to MiniProject.log
         output.write(spades_command + '\n')
         output.close()
@@ -66,7 +66,8 @@ def bowtie_build(SRR):
     os.system(bowtie_command2)
 
 def Count_bowtie(SRR, number):
-    bowtie_SRR = open('EF999921_' + SRR + '.fastq').readlines()
+    bowtie_SRR1 = open('EF999921_' + SRR + '.1').readlines()
+    bowtie_SRR2 = open('EF999921_' + SRR + '.2').readlines()
     donor = ''
     if number == 1:
         donor += 'Donor 1 (2dpi)' 
@@ -76,7 +77,7 @@ def Count_bowtie(SRR, number):
         donor += 'Donor 3 (2dpi)'
     elif number == 4:
         donor += 'Donor 3 (6dpi)'
-    len_bowtie = (len(bowtie_SRR)/4)
+    len_bowtie = ((len(bowtie_SRR1)+len(bowtie_SRR2)/4)
     original1 = open(SRR + '.1_1.fastq').readlines()                                                                                                                                            
     original2 = open(SRR + '.1_2.fastq').readlines() #count the number of reads
     original = (len(original1) + len(original2))/4
