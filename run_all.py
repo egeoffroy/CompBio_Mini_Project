@@ -46,12 +46,9 @@ def run_kallisto(SRR):
     kallisto = 'time kallisto quant -i HCMV_index.idx -o ./' + SRR+' -b 30 -t 4 '+ SRR + '.1_1.fastq ' + SRR+ '.1_2.fastq' #run kallisto for each of the SRRs
     os.system(kallisto)
 
-def sam_to_fastq(SRR):
-    fastq = 'bash sam_to_fastq.sh ' + SRR #convert the .sam bowtie output files to .fastq
-    os.system(fastq)
 
 def run_spades(SRR1, SRR2, SRR3, SRR4):
-    spades_command = 'spades -k 55,77,99,127 --only-assembler -t 2 --pe1-1 EF999921_'+ SRR1 + '.1 --pe1-2 EF999921_'+ SRR1 + '.2 --pe2-1 EF999921_'+ SRR2 + '.1 --pe2-2 EF999921_' + SRR2 + '.2 --pe3-1 EF999921_' + SRR3 + '.1 --pe3-2 EF999921_' + SRR3 +'.2 --pe4-1 EF999921_' + SRR4 + '.1 --pe4-2 EF999921_' + SRR4 + '.2 -o Spades/'    
+    spades_command = 'spades -k 55,77,99,127 --only-assembler -t 2 --pe1-1 EF999921_'+ SRR1 + '.1.fastq --pe1-2 EF999921_'+ SRR1 + '.2.fastq --pe2-1 EF999921_'+ SRR2 + '.1.fastq --pe2-2 EF999921_' + SRR2 + '.2.fastq --pe3-1 EF999921_' + SRR3 + '.1.fastq --pe3-2 EF999921_' + SRR3 +'.2.fastq --pe4-1 EF999921_' + SRR4 + '.1.fastq --pe4-2 EF999921_' + SRR4 + '.2.fastq -o Spades/'    
     with open('MiniProject.log','a') as output: #run SPades and print out the command to MiniProject.log
         output.write(spades_command + '\n')
         output.close()
@@ -62,7 +59,7 @@ def bowtie_build(SRR):
     bowtie_command = 'bowtie2-build ./CDS_EF999921.fasta EF999921'
     os.system(bowtie_command)
     #maps transcriptome reads to the index we just created, generating sam file
-    bowtie_command2 = 'bowtie2 --quiet --no-unal --al-conc EF999921_' + SRR + ' -x EF999921 -1 '+ SRR+ '.1_1.fastq -2 ' + SRR+ '.1_2.fastq -S EF999921_' + SRR+ '.sam'
+    bowtie_command2 = 'bowtie2 --quiet --no-unal --al-conc EF999921_' + SRR + '.fastq -x EF999921 -1 '+ SRR+ '.1_1.fastq -2 ' + SRR+ '.1_2.fastq -S EF999921_' + SRR+ '.sam'
     os.system(bowtie_command2)
 
 def Count_bowtie(SRR, number):
@@ -77,7 +74,7 @@ def Count_bowtie(SRR, number):
         donor += 'Donor 3 (2dpi)'
     elif number == 4:
         donor += 'Donor 3 (6dpi)'
-    len_bowtie = ((len(bowtie_SRR1)+len(bowtie_SRR2)/4)
+    len_bowtie = ((len(bowtie_SRR1)+len(bowtie_SRR2))/4)
     original1 = open(SRR + '.1_1.fastq').readlines()                                                                                                                                            
     original2 = open(SRR + '.1_2.fastq').readlines() #count the number of reads
     original = (len(original1) + len(original2))/4
@@ -184,7 +181,6 @@ run_sleuth(args.SRRs)
 number = 1
 for i in args.SRRs:
     bowtie_build(i)
-    #sam_to_fastq(i)
     Count_bowtie(i, number)
     number+=1
     
