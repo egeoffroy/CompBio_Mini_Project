@@ -42,7 +42,7 @@ Donor 1 (2dpi) had 4518574 read pairs before Bowtie2 filtering and 3336597 read 
 Donor 1 (6dpi) had 4009060 read pairs before Bowtie2 filtering and 2599735 read pairs after
 Donor 3 (2dpi) had 5460516 read pairs before Bowtie2 filtering and 3983409 read pairs after
 Donor 3 (6dpi) had 4953778 read pairs before Bowtie2 filtering and 2687368 read pairs after
-spades -k 33,55,77,99,127 -t 2 -s EF999921_SRR5660030.fastq -s EF999921_SRR5660033.fastq -s EF999921_SRR5660044.fastq -s EF999921_SRR5660045.fastq -o Spades/
+spades -k 55,77,99,127 -t 2 -s EF999921_SRR5660030.fastq -s EF999921_SRR5660033.fastq -s EF999921_SRR5660044.fastq -s EF999921_SRR5660045.fastq -o Spades/
 There are 37  contigs > 1000 in the assembly
 There are 66754 bp in the assembly
 seq_title align_len number_HSPs topHSP_ident topHSP_gaps topHSP_bits topHSP_expect
