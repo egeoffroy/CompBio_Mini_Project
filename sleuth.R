@@ -31,4 +31,4 @@ colnames(sleuth_significant) <- c("target_id", "test_stat", "pval","qval")
 sleuth_significant <- na.omit(sleuth_significant)
 #write.table(sleuth_significant, file="sleuth_all_hits.txt", quote=F, row.names=F)
 #sleuth_significant_top <- sleuth_significant
-write.table(sleuth_significant_top, file="sleuth_output.txt",quote = FALSE,row.names = FALSE)
+write.table(sleuth_significant, file="sleuth_output.txt",quote = FALSE,row.names = FALSE)
