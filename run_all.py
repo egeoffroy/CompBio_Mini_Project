@@ -51,7 +51,7 @@ def sam_to_fastq(SRR):
     os.system(fastq)
 
 def run_spades(SRR1, SRR2, SRR3, SRR4):
-    spades_command = 'spades -k 55,77,99,127 -t 2 -s EF999921_'+ SRR1 + '.fastq -s EF999921_'+ SRR2 + '.fastq -s EF999921_' + SRR3 + '.fastq -s EF999921_' + SRR4 + '.fastq -o Spades/'    
+    spades_command = 'spades -k 55,77,99,127 --only-assembler -t 2 -s EF999921_'+ SRR1 + '.fastq -s EF999921_'+ SRR2 + '.fastq -s EF999921_' + SRR3 + '.fastq -s EF999921_' + SRR4 + '.fastq -o Spades/'    
     with open('MiniProject.log','a') as output: #run SPades and print out the command to MiniProject.log
         output.write(spades_command + '\n')
         output.close()
