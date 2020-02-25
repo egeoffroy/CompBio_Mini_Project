@@ -62,7 +62,7 @@ def bowtie_build(SRR):
     bowtie_command = 'bowtie2-build ./CDS_EF999921.fasta EF999921'
     os.system(bowtie_command)
     #maps transcriptome reads to the index we just created, generating sam file
-    bowtie_command2 = 'bowtie2 --quiet --no-unal --al-conc -x EF999921 -1 '+ SRR+ '.1_1.fastq -2 ' + SRR+ '.1_2.fastq -S EF999921_' + SRR+ '.sam'
+    bowtie_command2 = 'bowtie2 --quiet --no-unal --al-conc EF999921_' + SRR + ' -x EF999921 -1 '+ SRR+ '.1_1.fastq -2 ' + SRR+ '.1_2.fastq -S EF999921_' + SRR+ '.sam'
     os.system(bowtie_command2)
 
 def Count_bowtie(SRR, number):
