@@ -63,8 +63,8 @@ def bowtie_build(SRR):
     os.system(bowtie_command2)
 
 def Count_bowtie(SRR, number):
-    bowtie_SRR1 = open('EF999921_' + SRR + '.1').readlines()
-    bowtie_SRR2 = open('EF999921_' + SRR + '.2').readlines()
+    bowtie_SRR1 = open('EF999921_' + SRR + '.1.fastq').readlines()
+    bowtie_SRR2 = open('EF999921_' + SRR + '.2.fastq').readlines()
     donor = ''
     if number == 1:
         donor += 'Donor 1 (2dpi)' 
