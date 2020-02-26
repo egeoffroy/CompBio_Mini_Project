@@ -147,7 +147,7 @@ def blast():
     for i in range(0,max_blast_id):
         hit = blast_qresult[i]
         blast_hsp = blast_qresult[i][0]
-        output.write(str(hit.def) + ' ' + str(hit.seq_len) + ' '+ str(len(hit.hsps)) + ' ' + str(blast_hsp.ident_num) + ' ' + str(blast_hsp.gap_num) + ' ' + str(blast_hsp.bitscore)+ ' ' +str(blast_hsp.evalue) + '\n')
+        output.write(str(hit.description) + ' ' + str(hit.seq_len) + ' '+ str(len(hit.hsps)) + ' ' + str(blast_hsp.ident_num) + ' ' + str(blast_hsp.gap_num) + ' ' + str(blast_hsp.bitscore)+ ' ' +str(blast_hsp.evalue) + '\n')
     output.close()
 
 
