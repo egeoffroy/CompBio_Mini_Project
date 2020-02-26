@@ -52,8 +52,6 @@ This test data consists of the first 2000 lines for the four SRR paired read fil
 
 #### sleuth.R : a R script that creates a sleuth object and identifies differentially expressed genes between two timepoints.
 
-#### sam_to_fastq.sh : a bash script that converts the Bowtie2 .sam files to .fastq files for SPades.
-
 
 
 
