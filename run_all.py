@@ -47,7 +47,7 @@ def run_kallisto(SRR):
     os.system(kallisto)
 
 
-def run_spades(SRR1, SRR2, SRR3, SRR4):
+def run_spades(SRR1, SRR2, SRR3, SRR4): #use only assembler to make Spades a lot shorter
     spades_command = 'spades -k 55,77,99,127 --only-assembler -t 2 --pe1-1 EF999921_'+ SRR1 + '.1.fastq --pe1-2 EF999921_'+ SRR1 + '.2.fastq --pe2-1 EF999921_'+ SRR2 + '.1.fastq --pe2-2 EF999921_' + SRR2 + '.2.fastq --pe3-1 EF999921_' + SRR3 + '.1.fastq --pe3-2 EF999921_' + SRR3 +'.2.fastq --pe4-1 EF999921_' + SRR4 + '.1.fastq --pe4-2 EF999921_' + SRR4 + '.2.fastq -o Spades/'    
     with open('MiniProject.log','a') as output: #run SPades and print out the command to MiniProject.log
         output.write(spades_command + '\n')
@@ -59,6 +59,7 @@ def bowtie_build(SRR):
     bowtie_command = 'bowtie2-build ./CDS_EF999921.fasta EF999921'
     os.system(bowtie_command)
     #maps transcriptome reads to the index we just created, generating sam file
+    #need al-conc to make fastq files in output 
     bowtie_command2 = 'bowtie2 --quiet --no-unal --al-conc EF999921_' + SRR + '.fastq -x EF999921 -1 '+ SRR+ '.1_1.fastq -2 ' + SRR+ '.1_2.fastq -S EF999921_' + SRR+ '.sam'
     os.system(bowtie_command2)
 
@@ -77,7 +78,7 @@ def Count_bowtie(SRR, number):
     len_bowtie = ((len(bowtie_SRR1)+len(bowtie_SRR2))/8)
     original1 = open(SRR + '.1_1.fastq').readlines()                                                                                                                                            
     original2 = open(SRR + '.1_2.fastq').readlines() #count the number of read pairs
-    original = (len(original1) + len(original2))/8
+    original = (len(original1) + len(original2))/8 #theoretically could just use one file and divide by 4
     #write out to the log file
     with open('MiniProject.log', 'a') as output:
         output.write(donor + " had " + str(original) + ' read pairs before Bowtie2 filtering and ' + str(len_bowtie) + ' read pairs after \n')
@@ -134,7 +135,7 @@ def contigs_length_count():
 
 def blast():
     fasta = open("assembly.fasta").read()
-    handle = NCBIWWW.qblast("blastn", "nr", fasta, entrez_query='10292[taxid]') #run blast against the assembled sequence
+    handle = NCBIWWW.qblast("blastn", "nr", fasta, entrez_query='"Herpesviridae"[organism]') #run blast against the assembled sequence
     with open("blast.xml", "w") as out_handle:
       out_handle.write(handle.read())
     out_handle.close()
