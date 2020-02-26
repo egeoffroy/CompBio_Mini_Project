@@ -74,10 +74,10 @@ def Count_bowtie(SRR, number):
         donor += 'Donor 3 (2dpi)'
     elif number == 4:
         donor += 'Donor 3 (6dpi)'
-    len_bowtie = ((len(bowtie_SRR1)+len(bowtie_SRR2))/4)
+    len_bowtie = ((len(bowtie_SRR1)+len(bowtie_SRR2))/8)
     original1 = open(SRR + '.1_1.fastq').readlines()                                                                                                                                            
-    original2 = open(SRR + '.1_2.fastq').readlines() #count the number of reads
-    original = (len(original1) + len(original2))/4
+    original2 = open(SRR + '.1_2.fastq').readlines() #count the number of read pairs
+    original = (len(original1) + len(original2))/8
     #write out to the log file
     with open('MiniProject.log', 'a') as output:
         output.write(donor + " had " + str(original) + ' read pairs before Bowtie2 filtering and ' + str(len_bowtie) + ' read pairs after \n')
