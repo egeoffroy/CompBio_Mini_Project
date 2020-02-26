@@ -7,11 +7,15 @@ To run this program from your own working directory, clone this repository to yo
   git clone https://github.com/egeoffroy/CompBio_Mini_Project.git
 ```
 
-### The python modules required for this program are:                    
-#### os -- https://docs.python.org/3/library/os.html
-#### argparse -- https://docs.python.org/3/library/argparse.html
-#### Biopython -- http://biopython.org/DIST/docs/tutorial/Tutorial.html
+### Software:
+#### Python
+##### os -- https://docs.python.org/3/library/os.html
+##### argparse -- https://docs.python.org/3/library/argparse.html
+##### Biopython -- http://biopython.org/DIST/docs/tutorial/Tutorial.html
 ###### The packages within Biopython that are used within the program are SeqIO, SearchIO, NCBIWWW, Seq, and Entrez. 
+#### Kallisto -- https://pachterlab.github.io/kallisto/
+#### Bowtie2 -- http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml
+#### SPades -- http://cab.spbu.ru/software/spades/
 
 ## Directions
 To run this program, move the SRR files you would like to run the program with in the directory CompBio_Mini_Project. This can be done by running:
@@ -42,7 +46,7 @@ To run the software with the test data provided:
   python run_all.py SRR5660030 SRR5660033 SRR5660044 SRR5660045
 ```
 
-This test data consists of the first 2000 lines for the four SRR paired read files. This means there are 1000 read pairs for each SRR. When running with this tool, expect only one significant contig with length > 1000 bp after running SPades. 
+This test data consists of the first 50000 lines for the four SRR paired read files. This means there are 25000 read pairs for each SRR. When running with this tool, expect only one significant contig with length > 1000 bp after running SPades. 
 
 ## Scripts
 
