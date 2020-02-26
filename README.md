@@ -46,7 +46,7 @@ To run the software with the test data provided:
   python run_all.py SRR5660030 SRR5660033 SRR5660044 SRR5660045
 ```
 
-This test data consists of the first 50000 lines for the four SRR paired read files. This means there are 25000 read pairs for each SRR. When running with this tool, expect only one significant contig with length > 1000 bp after running SPades. 
+This test data consists of the first 50000 lines for the four SRR paired read files. This means there are 12500 read pairs for each SRR. When running with this tool, expect only one significant contig with length > 1000 bp after running SPades. 
 
 ## Scripts
 
