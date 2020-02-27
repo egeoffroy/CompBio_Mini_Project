@@ -38,13 +38,13 @@ ABV71635.1 8.30207670055876 0.00395997709739081 0.0440877450176177
 
 ABV71507.1 7.96945436003376 0.00475732768397104 0.0496546077014477
 
-Donor 1 (2dpi) had 2259287 read pairs before Bowtie2 filtering and 1312790 read pairs after
-Donor 1 (6dpi) had 2004530 read pairs before Bowtie2 filtering and 1041195 read pairs after
-Donor 3 (2dpi) had 2730258 read pairs before Bowtie2 filtering and 1764133 read pairs after
-Donor 3 (6dpi) had 2476889 read pairs before Bowtie2 filtering and 1216629 read pairs after
+Donor 1 (2dpi) had 2259287 read pairs before Bowtie2 filtering and 1744101 read pairs after
+Donor 1 (6dpi) had 2004530 read pairs before Bowtie2 filtering and 1488833 read pairs after
+Donor 3 (2dpi) had 2730258 read pairs before Bowtie2 filtering and 2382996 read pairs after
+Donor 3 (6dpi) had 2476889 read pairs before Bowtie2 filtering and 1500834 read pairs after
 spades -k 55,77,99,127 --only-assembler -t 2 --pe1-1 EF999921_SRR5660030.1.fastq --pe1-2 EF999921_SRR5660030.2.fastq --pe2-1 EF999921_SRR5660033.1.fastq --pe2-2 EF999921_SRR5660033.2.fastq --pe3-1 EF999921_SRR5660044.1.fastq --pe3-2 EF999921_SRR5660044.2.fastq --pe4-1 EF999921_SRR5660045.1.fastq --pe4-2 EF999921_SRR5660045.2.fastq -o Spades/
-There are 65  contigs > 1000 in the assembly
-There are 133382 bp in the assembly
+There are 54  contigs > 1000 in the assembly
+There are 195674 bp in the assembly
 seq_title align_len number_HSPs topHSP_ident topHSP_gaps topHSP_bits topHSP_expect
 Human herpesvirus 5 strain TB40/E clone Lisa, complete genome 237683 79 6753 0 12179.4 0.0
 Human herpesvirus 5 strain TB40/E clone TB40-BAC4, complete sequence 229050 79 6753 0 12179.4 0.0
