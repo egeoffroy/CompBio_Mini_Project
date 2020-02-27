@@ -56,11 +56,11 @@ def run_spades(SRR1, SRR2, SRR3, SRR4): #use only assembler to make Spades a lot
 
 def bowtie_build(SRR):
     #builds initial index using reference genome-- use transcriptome_index CDS fasta file?
-    bowtie_command = 'bowtie2-build ./CDS_EF999921.fasta EF999921'
+    bowtie_command = 'bowtie2-build ./EF999921.fasta EF999921_1'
     os.system(bowtie_command)
     #maps transcriptome reads to the index we just created, generating sam file
     #need al-conc to make fastq files in output 
-    bowtie_command2 = 'bowtie2 --quiet --no-unal --al-conc EF999921_' + SRR + '.fastq -x EF999921 -1 '+ SRR+ '.1_1.fastq -2 ' + SRR+ '.1_2.fastq -S EF999921_' + SRR+ '.sam'
+    bowtie_command2 = 'bowtie2 --quiet --no-unal --al-conc EF999921_' + SRR + '.fastq -x EF999921_1 -1 '+ SRR+ '.1_1.fastq -2 ' + SRR+ '.1_2.fastq -S EF999921_' + SRR+ '.sam'
     os.system(bowtie_command2)
 
 def Count_bowtie(SRR, number):
