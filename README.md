@@ -68,10 +68,12 @@ This test data consists of the first 50000 lines for the four SRR paired read fi
  CDS_EF999921.fasta : a fasta file for only the coding regions of EF999921 
  
  sample_covariates.txt : a file containing the sample names, paths, and conditions in order to run sleuth.R
-
- assembly.fasta : the assembled significant contigs. 
+ 
+ sleuth_output.txt : a file containing the significant hits after running sleuth. 
 
  significant_contigs.txt : a file listing the contigs with more than 1000 bp. 
+ 
+ assembly.fasta : the assembled significant contigs. 
 
  blast.xlm : the blast output file.
 
